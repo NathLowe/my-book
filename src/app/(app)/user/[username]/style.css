@@ -1,0 +1,6 @@
+#user-links .nav-item{
+    @apply inline-flex justify-center items-center w-full gap-x-2 p-3 border-t-2 border-transparent
+}
+#user-links .nav-item.active{
+    @apply text-primary-main border-primary-dark
+}
