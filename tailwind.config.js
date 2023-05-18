@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx,css}',
+    './src/features/**/*.{js,ts,jsx,tsx,mdx,css}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -15,14 +16,14 @@ module.exports = {
       },
       colors: {
         primary:{
+          light: "#a78bfa",
+          main: "#7c3aed",
+          dark: "#5b21b6",
+        },
+        secondary:{
           light: "#38bdf8",
           main: "#0284c7",
           dark: "#075985",
-        },
-        secondary:{
-          light: "#fbbf24",
-          main: "#d97706",
-          dark: "#92400e",
         },
         disabled: "#9ca3af"
       }
