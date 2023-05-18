@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import Navigation from '@/components/Navigation/index'
 import TopBar from '@/components/TopBar'
 import Drawer from '@/components/Navigation/Drawer'
+import FlowbiteInitializer from '@/components/FlowbiteInitializer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,6 +30,8 @@ export default function RootLayout({
         <div className="grow min-h-screen my-10 md:my-0 md:ml-20 lg:ml-48" >
           {children}
         </div>
+
+        <FlowbiteInitializer/>
       </body>
     </html>
   )
