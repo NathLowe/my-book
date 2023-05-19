@@ -9,7 +9,7 @@ import { useDrawer } from './../../stores/drawer';
 const getDatas = async(search:string)=>{
     // Request
     let time = await setTimeout(()=>{
-        console.log('first')
+        // console.log('first')
     },20000)
     let datas:number[] = await search === '' ? [] : [1]
     return datas

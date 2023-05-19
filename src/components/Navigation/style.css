@@ -1,7 +1,6 @@
-#navigation-bar .nav-link{
+#navigation-bar .nav-link, #topbar .nav-link{
     @apply  text-slate-700 dark:text-gray-400
 }
-
-#navigation-bar .nav-link.active{
+#navigation-bar .nav-link.active, #topbar .nav-link.active{
     @apply text-primary-light dark:text-primary-dark
 }
