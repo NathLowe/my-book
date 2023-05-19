@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import admin from "@/assets/images/admin4.jpg"
 import { randomImage } from '@/datas/functions'
 
 export default function UserSuggested() {
