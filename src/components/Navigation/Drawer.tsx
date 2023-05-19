@@ -5,6 +5,7 @@ import { MdClose } from 'react-icons/md'
 import { Drawer as DrawerFlowbite, DrawerInterface } from 'flowbite';
 
 import { useDrawer } from '@/stores/drawer'
+import { shallow } from 'zustand/shallow';
 
 // set the drawer menu element
 const drawerId = "navigation-drawer"
@@ -25,16 +26,9 @@ export const drawerClientFunction = ()=>{
 
 
 export default function Drawer() {
-    let { hideDrawer, drawer, openDrawer } = useDrawer((state)=>({
-        hideDrawer: state.hideDrawer,
-        drawer: state.drawer,
-        openDrawer: state.openDrawer,
-    }))
-
-
-    useEffect(()=>{
-        openDrawer()
-    },[drawer])
+    let { hideDrawer } = useDrawer(state => ({
+      hideDrawer: state.hideDrawer
+    }),shallow)
 
   return (
     <div id={drawerId} className="fixed top-0 left-0 z-60 shadow h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80
