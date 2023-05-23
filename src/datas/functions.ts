@@ -23,3 +23,12 @@ export const randomArray = (items:number=10):number[] =>{
   }
   return array
 }
+
+export const randomizeArray = <T>(initialArray:T[]) =>{
+  let newArray = []
+  let previousArray = [...initialArray]
+  while(previousArray.length > 0){
+    newArray.push(previousArray.splice(randomNumber(previousArray.length - 1),1)[0])
+  }
+  return newArray
+}

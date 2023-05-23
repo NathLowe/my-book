@@ -23,7 +23,7 @@ export default async function SearchResult() {
 
     if(datas.length === 0) return (
         <div className="pb-4 italic text-xl" >No results found</div>
-      )
+    )
 
     return (
         <div className="pb-4">

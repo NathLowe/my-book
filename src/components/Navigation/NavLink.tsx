@@ -1,10 +1,11 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IconType } from 'react-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { useDrawer } from '@/stores/drawer';
+// import { useSession } from 'next-auth/react';
 
 export default function NavLink({
     children,

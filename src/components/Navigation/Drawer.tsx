@@ -66,7 +66,7 @@ export default function Drawer() {
     }),shallow)
 
   return (
-    <div id={drawerId} className="fixed top-0 left-0 z-60 shadow-lg h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80
+    <div id={drawerId} className="fixed top-0 left-0 z-20 shadow-lg h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80
         hidden md:block md:left-20 lg:left-48 text-slate-800 dark:text-gray-100 dark:bg-gray-800 overscroll-contain" aria-labelledby="drawer-label">
       <button onClick={hideDrawer} type="button" data-drawer-hide={drawerId} aria-controls={drawerId} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
         <MdClose className="w-5 h-5 fill-current" />
