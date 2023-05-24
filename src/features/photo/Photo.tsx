@@ -50,9 +50,9 @@ export default function Photo({
   let username = actualPhoto.album?.user?.username
   let url = randomImage()
   return (
-    <div className="block mx-auto m-4 flex-none max-w-sm bg-white border border-gray-50 rounded shadow-sm self-start overflow-hidden dark:bg-gray-800 dark:border-gray-700">
+    <div className="block mx-auto m-4 flex-none max-w-sm bg-white border border-gray-50 rounded shadow-sm  overflow-hidden dark:bg-gray-800 dark:border-gray-700">
       <UserCardHeader title={title} username={username} />
-      <Image src={url} alt={`Image Title`} className="w-full h-auto" />
+      <Image src={url} alt={`Image Title`} className="w-full h-full object-cover" />
     </div>
   )
 }

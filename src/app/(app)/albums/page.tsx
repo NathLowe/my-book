@@ -2,7 +2,7 @@ import React from 'react'
 import AlbumGrid from '@/features/album/AlbumGrid'
 import { randomArray, randomNumber } from '@/datas/functions'
 import { getClient } from '@/datas/apollo'
-import { GET_ALBUMSPAGE, AlbumspageResult, AlbumspageVariables } from '@/queries/GetAlbumsPage'
+import { GET_ALBUMSPAGE, AlbumspageResult, AlbumspageVariables } from '@/queries/album/GetAlbumsPage'
 
 
 const fetchAlbums = async()=>{

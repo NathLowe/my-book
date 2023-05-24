@@ -2,10 +2,11 @@ import Post from '@/features/post/Post'
 import Photo from '@/features/photo/Photo'
 
 import UserSuggested from "@/components/UserSuggested"
-import { randomNumber } from '@/datas/functions'
+import { randomNumber, randomizeArray } from '@/datas/functions'
 
 import { getClient } from "@/datas/apollo";
 import { GET_POSTS_AND_PHOTOS, GetPostsAndPhotos, MainVariables } from "@/queries/main";
+import { Maybe, Post as PostType, Photo as PhotoType } from '@/datas/types';
 
 export const dynamic = 'force-dynamic'
 
@@ -37,21 +38,24 @@ export default async function Home() {
   let photos = data.photos.data
   photos = (photos !== null && photos !== undefined) ? photos : []
 
+  // to randomize the data
+  let toDisplay:(Maybe<PostType>|Maybe<PhotoType>)[] = []
+  posts.forEach(post => {toDisplay.push(post)})
+  photos.forEach(photo => {toDisplay.push(photo)})
+  toDisplay = randomizeArray(toDisplay)
+
   return (
     <main className="flex">
       <section id="main-content" className="w-full h-full p-4" >
         {
-          photos.map((photo,index) => {
-            return <Photo key={index} photo={photo} />
+          toDisplay.map((data,key)=>{
+            if(data?.__typename === 'Photo'){
+              return <Photo key={key} photo={data} />
+            }else if(data?.__typename === 'Post'){
+              return <Post key={key} post={data} />
+            }
           })
         }
-        {
-          posts.map((post,index) => {
-            return <Post key={index} post={post} />
-          })
-        }
-        {/* <Photo/> */}
-        {/* Posts and Photos features */}
       </section>
       <section id="suggestion-bar" className="w-1/2 pr-40 hidden xl:block" >
         <div className="flex items-center justify-between mt-10 mb-4" >
