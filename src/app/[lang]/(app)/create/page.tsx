@@ -1,5 +1,5 @@
 import Button from '@/components/Button'
-import Input from '@/components/Input'
+import Input from '@/components/Input/Input'
 import UserCardHeader from '@/components/UserCardHeader'
 import React from 'react'
 

@@ -42,8 +42,8 @@ export default async function page({
       <section id="album-page" className="px-10 py-3" >
         <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
           {
-            photos.map(photo => {
-              return <Image src={randomImage()} 
+            photos.map((photo,key) => {
+              return <Image key={key} src={randomImage()} 
               alt={photo?.title ? photo.title : 'Random Photo'}
               className="w-full aspect-square object-cover rounded-lg"/> 
             })

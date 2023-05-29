@@ -9,10 +9,10 @@ export interface Props {
 
 export default function Provider({ children }: Props) {
   return (
-    // <SessionProvider>
+    <SessionProvider>
       <ApolloWrapper>
         {children}
       </ApolloWrapper>
-    // </SessionProvider>
+    </SessionProvider>
   );
 }

@@ -11,7 +11,7 @@ export default function AlbumGrid({
   album
 }:{
   withUser?:boolean,
-  album: Maybe<Album>
+  album?: Maybe<Album>
 }) {
 
   let photos = album?.photos?.data ? album.photos.data : []
@@ -24,9 +24,9 @@ export default function AlbumGrid({
         <UserCardHeader username={album?.user?.username} title={album?.title}  withUser={withUser} />
         <div className="p-3 grid grid-cols-2 grid-rows-2 gap-2">
           {
-            photosToShow.map(photo => {
+            photosToShow.map((photo,key) => {
               let title = photo?.title ? photo.title : 'Random Photo'
-              return <Image src={randomImage()} alt={title} className="w-full rounded-lg object-cover aspect-square" />
+              return <Image key={key} src={randomImage()} alt={title} className="w-full rounded-lg object-cover aspect-square" />
             })
           }
           {

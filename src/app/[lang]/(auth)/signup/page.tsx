@@ -1,6 +1,6 @@
 import React from 'react'
 import { headerFont } from '@/datas/fonts'
-import Input from '@/components/Input'
+import Input from '@/components/Input/Input'
 import Button from '@/components/Button'
 import { randomImage } from '@/datas/functions';
 

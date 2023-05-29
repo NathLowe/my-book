@@ -4,14 +4,17 @@ import "./style.css"
 import { randomImage } from '@/datas/functions'
 import { headerFont } from '@/datas/fonts'
 import Image from 'next/image'
-import Link from 'next/link'
 import Button from '@/components/Button'
+import TabLink from './TabLink'
 
 import { IconType } from 'react-icons'
 import { MdImage, MdPhotoAlbum, MdFeed } from 'react-icons/md'
 
 import { getClient } from '@/datas/apollo'
 import { UserByIdVariables, UserByIdResult, GET_USER_BY_ID } from '@/queries/user/GetUserById'
+import { useTranslation } from '@/app/i18n'
+import { useLang } from '@/stores/lang'
+import { Locale } from '@/app/i18n/settings'
 
 
 // Types
@@ -27,7 +30,7 @@ const navElements:navElement[] = [
     {
         Icon: MdImage,
         name:'Photos',
-        link:'/'
+        link:''
     },
     {
         Icon: MdPhotoAlbum,
@@ -76,15 +79,17 @@ export default async function layout({
     params,
   }: {
     children: React.ReactNode,
-    params: {id:string}
+    params: {id:string, lang:Locale}
   }) {
     let user = await fetchData(params.id)
+    let { t } = await useTranslation(params.lang)
+    let generateLink = useLang.getState().generateLink
 
     return (
-        <main className="md:max-w-3xl mx-auto" >
+        <main className="md:max-w-3xl py-6 mx-auto" >
             <section id="user-header" className="p-3 flex flex-col gap-x-8 md:flex-row md:items-center" >
                 <div className="flex items-center gap-x-4" >
-                    <Image src={randomImage()} alt={`USername`} className="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover ring-2 ring-offset-2 ring-primary-main" />
+                    <Image src={randomImage()} alt={user?.username ? user.username : ''} className="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover ring-2 ring-offset-2 ring-primary-main" />
                     <NameWithButtons username={user?.username} part={1} />
                 </div>
                 <div className="mt-4 dark:text-white" >
@@ -98,14 +103,15 @@ export default async function layout({
                 <div className="text-sm font-medium text-center text-gray-500 border-t border-gray-200 dark:text-gray-400 dark:border-gray-700">
                     <ul className="w-full md:max-w-sm md:mx-auto grid grid-cols-3 -mt-px">
                         {
-                            navElements.map(({Icon,name,link},index)=>(
+                            navElements.map(({Icon,name,link},index)=>{
+                                let href = generateLink(`/user/${params.id}${link}`)
+                                return (
                                 <li key={index} >
-                                    <Link href={`${link}`} className={`nav-item hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 ${index===0 && 'active'}`}>
+                                    <TabLink href={href} name={name} >
                                         <Icon className="w-8 h-8 md:w-5 md:h-5 fill-current inline" />
-                                        <span className="hidden md:inline-block md:text-sm" > {name} </span>
-                                    </Link>
+                                    </TabLink>
                                 </li>
-                            ))
+                            )})
                         }
                     </ul>
                 </div>

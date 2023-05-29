@@ -7,10 +7,19 @@ import { randomNumber, randomizeArray } from '@/datas/functions'
 import { getClient } from "@/datas/apollo";
 import { GET_POSTS_AND_PHOTOS, GetPostsAndPhotos, MainVariables } from "@/queries/main";
 import { Maybe, Post as PostType, Photo as PhotoType } from '@/datas/types';
+import { useTranslation } from '@/app/i18n';
+import { Locale } from '@/app/i18n/settings';
 
 export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
 
-export default async function Home() {
+export default async function Home({
+  params:{lang}
+}:{
+  params:{lang:Locale}
+}) {
+  // Get the i18n
+  let { t, i18n } = await useTranslation(lang)
   // Initialize Apollo Client's client
   let client = getClient()
 

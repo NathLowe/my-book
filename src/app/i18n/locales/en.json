@@ -1,0 +1,11 @@
+{
+    "navigation": {
+        "home": "Home",
+        "search": "Search",
+        "albums": "Albums",
+        "users": "Users",
+        "posts": "Posts",
+        "profile": "Profile"
+    },
+    "test2": "Fuck off"
+}

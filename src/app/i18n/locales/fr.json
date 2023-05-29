@@ -1,0 +1,10 @@
+{
+    "navigation": {
+        "home": "Accueil",
+        "search": "Explorer",
+        "albums": "Albums",
+        "users": "Amis",
+        "posts": "Posts",
+        "profile": "Profile"
+    }
+}

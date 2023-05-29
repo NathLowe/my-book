@@ -1,0 +1,18 @@
+.my-input{
+    @apply block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-gray-300 appearance-none dark:text-white dark:border-gray-600 
+}
+.my-input:focus{
+    @apply dark:border-blue-500 outline-none ring-0 border-blue-600
+}
+.my-input.success{
+    @apply text-green-500 border-green-500 dark:text-green-500 dark:border-green-500
+}
+.my-input.success + label{
+    @apply text-green-500 dark:text-green-500 !important
+}
+.my-input.error{
+    @apply text-red-500 border-red-500 dark:text-red-500 dark:border-red-500
+}
+.my-input.error + label{
+    @apply text-red-500 dark:text-red-500 !important
+}
