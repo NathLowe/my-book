@@ -11,6 +11,10 @@ import { dir } from 'i18next'
 
 import favicon from '@/app/favicon.png'
 import ClientInitializer from '@/components/ClientInitializer'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { redirect } from 'next/navigation'
+import { useTheme } from '@/stores/theme'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,21 +28,28 @@ export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }))
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params:{lang}
 }: {
   children: React.ReactNode,
   params:{lang:Locale}
 }) {
+
+  let theme = useTheme.getState().theme
+
+  let session = await getServerSession(authOptions)
+  if(!session) redirect('/login')
+
   return (
-    <html lang={lang} dir={dir(lang)} >
+    <html lang={lang} dir={dir(lang)} className={`${theme === 'dark' && 'dark'}`} >
       <ClientInitializer lang={lang} />
       <head>
         <link rel="shortcut icon" href={favicon.src} type="image/x-icon" />
       </head>
       <Provider>
         <body className={`${inter.className} overflow-x-hidden w-screen h-screen flex dark:bg-gray-900`}>
+      <pre>{theme}</pre>
           <Navigation/>
           <TopBar/>
           <Drawer/>

@@ -1,14 +1,13 @@
-'use client'
-
 import UserCardHeader from '@/components/UserCardHeader'
 import { Maybe, Post } from '@/datas/types'
 import { randomNumber } from '@/datas/functions';
 
 import { PostByIdVariables, GET_POST_BY_ID, PostByIdResult } from '@/queries/post/GetPostById';
-import { useQuery } from '@apollo/client';
+import { getClient } from '@/datas/apollo';
+// import { useQuery } from '@apollo/client';
 
 
-export default function Post({
+export default async function Post({
   withUser,
   id,
   post
@@ -32,12 +31,16 @@ export default function Post({
     }
   }
 
+  let client = getClient()
+
   if(id){
     // Fetch post with id
-    let variables: PostByIdVariables = {
-      postId: id
-    }
-    let { data, loading, error } = useQuery<PostByIdResult>(GET_POST_BY_ID, {variables})
+    let { data } = await client.query<PostByIdResult,PostByIdVariables>({
+      query: GET_POST_BY_ID,
+      variables: {
+        postId: id
+      }
+    })
     if(data) actualPost = data.post
   }else{
     if(post){
@@ -47,6 +50,8 @@ export default function Post({
 
   let numberOfComments = actualPost.comments?.data?.length
   numberOfComments = numberOfComments ? numberOfComments : 0
+
+  await new Promise(resolve => setTimeout(resolve, 100000))
 
   return (
     <>

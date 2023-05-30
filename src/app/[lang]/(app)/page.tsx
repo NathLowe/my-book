@@ -9,6 +9,8 @@ import { GET_POSTS_AND_PHOTOS, GetPostsAndPhotos, MainVariables } from "@/querie
 import { Maybe, Post as PostType, Photo as PhotoType } from '@/datas/types';
 import { useTranslation } from '@/app/i18n';
 import { Locale } from '@/app/i18n/settings';
+import { Suspense } from 'react';
+import PostLoader from '@/features/post/PostLoader';
 
 export const dynamic = 'force-dynamic'
 export const fetchCache = 'force-no-store'
@@ -61,7 +63,11 @@ export default async function Home({
             if(data?.__typename === 'Photo'){
               return <Photo key={key} photo={data} />
             }else if(data?.__typename === 'Post'){
-              return <Post key={key} post={data} />
+              return (
+                <Suspense key={key} fallback={<PostLoader/>}>
+                  <Post post={data} />
+                </Suspense>
+              )
             }
           })
         }

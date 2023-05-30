@@ -1,5 +1,6 @@
 import React from 'react'
-import { MdPerson, MdSunny, MdBedtime } from 'react-icons/md'
+import { MdSunny, MdBedtime } from 'react-icons/md'
+import Cookies from "js-cookie";
 
 export const clientToggleTheme = ()=>{
     var themeToggleDarkIcons = document.querySelectorAll('.theme-toggle-dark-icon')!;
@@ -10,7 +11,7 @@ export const clientToggleTheme = ()=>{
         themeToggleLightIcons.forEach(icon => {
             icon.classList.remove('hidden');
         })
-        if(!document.documentElement.classList.contains('dark')) document.documentElement.classList.add('dark')
+        // if(!document.documentElement.classList.contains('dark')) document.documentElement.classList.add('dark')
     } else {
         themeToggleDarkIcons.forEach(icon => {
             icon.classList.remove('hidden');
@@ -36,9 +37,11 @@ export const clientToggleTheme = ()=>{
                   if (localStorage.getItem('color-theme') === 'light') {
                       document.documentElement.classList.add('dark');
                       localStorage.setItem('color-theme', 'dark');
+                      Cookies.set('color-theme', 'dark');
                   } else {
                       document.documentElement.classList.remove('dark');
                       localStorage.setItem('color-theme', 'light');
+                      Cookies.set('color-theme', 'light');
                   }
         
               // if NOT set via local storage previously
@@ -46,11 +49,14 @@ export const clientToggleTheme = ()=>{
                   if (document.documentElement.classList.contains('dark')) {
                       document.documentElement.classList.remove('dark');
                       localStorage.setItem('color-theme', 'light');
+                      Cookies.set('color-theme', 'light');
                   } else {
                       document.documentElement.classList.add('dark');
                       localStorage.setItem('color-theme', 'dark');
+                      Cookies.set('color-theme', 'dark');
                   }
               }
+            //   Normally just on development
               document.documentElement.classList.add('pause')
               setTimeout(()=>{
                 document.documentElement.classList.remove('pause')

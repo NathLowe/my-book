@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import acceptLanguage from 'accept-language'
 import { fallbackLng, languages } from '@/app/i18n/settings'
+import { useTheme } from './stores/theme'
 
 acceptLanguage.languages(languages)
 
@@ -16,6 +17,13 @@ export function middleware(req) {
   if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName).value)
   if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
   if (!lng) lng = fallbackLng
+
+  // check the theme in the cookie
+  if (req.cookies.has('color-theme')) {
+    const theme = req.cookies.get('color-theme').value
+    useTheme.setState({ theme })
+    console.log(theme, useTheme.getState().theme)
+  }
 
   // Redirect if lng in path is not supported
   if (
